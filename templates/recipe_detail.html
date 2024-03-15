@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recipe Book</title>
-  </head>
-  <body style="background-color: lightcyan">
-    <h1>
-      <a href="/recipes/list" style="color: palevioletred">Recipe Book</a>
-    </h1>
-    <h2 style="color: salmon">{{ name }}</h2>
-    <p>
-      <ul>
-        {% for ingredient in ingredients %}
-        <li style="color: mediumseagreen; font-style: italic">
-          {{ ingredient.quantity }} {{ingredient.name}}
-        </li>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    {{ recipe.name }}
+{% endblock title %}
+<h2>{{ recipe.name }}</h2>
+{% block content %}
+    <h3>by {{ recipe.author }}</h3>
+    <ul>
+        {% for ingredient in recipe.ingredients.all %}
+            <li>{{ ingredient.quantity }} {{ ingredient.ingredient.name }}</li>
         {% endfor %}
-      </ul>
-    </p>
-  </body>
-</html>
+    </ul>
+{% endblock content %}

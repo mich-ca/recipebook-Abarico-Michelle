@@ -1,24 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recipe Book</title>
-  </head>
-  <body style="background-color: lightcyan">
-    <h1>
-      <a href="/recipes/list" style="color: palevioletred">Recipe Book</a>
-    </h1>
-    <p>
-      <ul>
-        {% for recipe in recipes %}
-        <li>
-          <a href="{{ recipe.link }}" style="color: salmon">
-            {{ recipe.name }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-    </p>
-  </body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Recipe List
+{% endblock title %}
+{% block content %}
+    <h2>Recipe List</h2>
+    <h3>
+        <ul>
+            {% for recipe in object_list %}
+                <li>
+                    <a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </h3>
+{% endblock content %}
